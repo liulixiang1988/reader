@@ -35,7 +35,9 @@
           on-refresh="loadNewerStories()">
         </ion-refresher>
         <div class="list">
-          <a class="item item-thumbnail-left item-text-wrap" href="{{story.url}}" target="_blank" ng-repeat="story in stories track by story.id">
+          <a class="item item-thumbnail-left item-text-wrap" 
+            ng-click="openLink(story.url)"
+            ng-repeat="story in stories track by story.id">
             <img ng-src="{{story.thumbnail}}"
               ng-if="story.thumbnail.startsWith('http')"/>
             <h2 class="story-title">{{story.title}}</h2>
