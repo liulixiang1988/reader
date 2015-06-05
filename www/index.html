@@ -24,12 +24,17 @@
   <body ng-app="reader" ng-controller="RedditCtrl">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
+      <ion-header-bar class="bar-balanced">
         <h1 class="title">阅读</h1>
       </ion-header-bar>
       <ion-content>
-        <div ng-repeat="story in stories">
-          <a href="{{story.url}}">{{story.title}}</a>-{{story.domain}}
+        <div class="list">
+          <a class="item item-thumbnail-left item-text-wrap" href="{{story.url}}" target="_blank" ng-repeat="story in stories">
+            <img ng-src="{{story.thumbnail}}"
+              ng-if="story.thumbnail.startsWith('http')"/>
+            <h2 class="story-title">{{story.title}}</h2>
+            <p>{{story.domain}}</p>
+          </a>
         </div>
       </ion-content>
     </ion-pane>
