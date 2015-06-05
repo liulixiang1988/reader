@@ -1,6 +1,6 @@
 (function(){
 
-app = angular.module('reader', ['ionic']);
+app = angular.module('reader', ['ionic', 'angularMoment']);
 
 app.controller('RedditCtrl',function($http, $scope){
   $scope.stories = [];
@@ -12,7 +12,8 @@ app.controller('RedditCtrl',function($http, $scope){
     });
 });
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, amMoment) {
+  amMoment.changeLocale('zh-cn');
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
