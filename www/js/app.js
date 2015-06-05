@@ -14,7 +14,6 @@ app.controller('RedditCtrl',function($http, $scope){
           if(!story.thumbnail || story.thumbnail === 'self'){
             story.thumbnail = 'http://www.redditstatic.com/icon.png';
           }
-          console.log(child.data.thumbnail);
           stories.push(child.data);
         });
         callback(stories);
