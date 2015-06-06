@@ -11,7 +11,7 @@ app.controller('RedditCtrl',function($http, $scope){
       .success(function(response){
         angular.forEach(response.data.children, function(child){
           var story = child.data;
-          if(!story.thumbnail || story.thumbnail === 'self'){
+          if(!story.thumbnail || story.thumbnail === 'self' || story.thumbnail == "default"){
             story.thumbnail = 'http://www.redditstatic.com/icon.png';
           }
           stories.push(child.data);

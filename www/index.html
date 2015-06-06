@@ -38,8 +38,7 @@
           <a class="item item-thumbnail-left item-text-wrap" 
             ng-click="openLink(story.url)"
             ng-repeat="story in stories track by story.id">
-            <img ng-src="{{story.thumbnail}}"
-              ng-if="story.thumbnail.startsWith('http')"/>
+            <img ng-src="{{story.thumbnail}}"/>
             <h2 class="story-title">{{story.title}}</h2>
             <p>
               <span am-time-ago="story.created_utc" am-preprocess="unix"></span>
