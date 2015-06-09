@@ -1,0 +1,21 @@
+<ion-view view-title="{{category.name}}" ng-controller="RedditCtrl">
+  <ion-content>
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="loadNewerStories()">
+    </ion-refresher>
+    <div class="list">
+      <a class="item item-thumbnail-left item-text-wrap" 
+        ng-click="openLink(story.url)"
+        ng-repeat="story in stories track by story.id">
+        <img ng-src="{{story.thumbnail}}"/>
+        <h2 class="story-title">{{story.title}}</h2>
+        <p>
+          <span am-time-ago="story.created_utc" am-preprocess="unix"></span>
+         - {{story.domain}}</p>
+      </a>
+    </div>
+    <ion-infinite-scroll on-infinite="loadOlderStories()" distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

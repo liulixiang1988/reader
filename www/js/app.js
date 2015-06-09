@@ -1,13 +1,17 @@
 (function(){
 
-app = angular.module('reader', ['ionic', 'angularMoment']);
+app = angular.module('reader', ['ionic', 'angularMoment', "reader.categoryStore"]);
 
-app.controller('RedditCtrl',function($http, $scope){
+app.controller('CategoryCtrl', function($scope, CategoryStore){
+  $scope.category = CategoryStore.list();
+});
+
+app.controller('RedditCtrl',function($http, $scope, $state, CategoryStore){
   $scope.stories = [];
-
+  $scope.category = CategoryStore.get($state.params.categoryId);
   function loadStories(params, callback){
     var stories = []
-    $http.get("http://www.reddit.com/r/Android/new/.json", {params: params})
+    $http.get($scope.category.url, {params: params})
       .success(function(response){
         angular.forEach(response.data.children, function(child){
           var story = child.data;
@@ -42,6 +46,21 @@ app.controller('RedditCtrl',function($http, $scope){
   $scope.openLink = function(url){
     window.open(url, '_blank');
   }
+});
+
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider.state("category",{
+    url:"/category",
+    templateUrl: "templates/category.html",
+    controller: "CategoryCtrl"
+  })
+  .state("infolist",{
+    url: "/infolist/:categoryId",
+    templateUrl: "templates/infolist.html",
+    controller: "RedditCtrl"
+  });
+
+  $urlRouterProvider.otherwise("/category");
 });
 
 app.run(function($ionicPlatform, amMoment) {

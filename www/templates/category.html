@@ -1,0 +1,11 @@
+<ion-view view-title="阅读" ng-controller="CategoryCtrl">
+<ion-content>
+<ion-list>
+  <ion-item class="item-icon-right"
+    href="#/infolist/{{c.name}}" ng-repeat="c in category track by c.name">
+    <h2>{{c.name}}</h2>
+    <i class="icon ion-arrow-right-b"></i>
+  </ion-item>
+</ion-list>
+</ion-content>
+</ion-view>
