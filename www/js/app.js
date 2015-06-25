@@ -44,7 +44,7 @@ app.controller('RedditCtrl',function($http, $scope, $state, CategoryStore){
   };
 
   $scope.openLink = function(url){
-    window.open(url, '_blank');
+    window.open(url, '_system');
   }
 });
 
